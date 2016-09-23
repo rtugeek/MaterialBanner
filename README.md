@@ -3,6 +3,10 @@
 ## ScreenShot:
 ![](https://github.com/rtugeek/MaterialBanner/blob/master/screenshot/GIF.gif)
 
+
+Idea from google trips
+![](https://github.com/rtugeek/MaterialBanner/blob/master/screenshot/googletrips.jpg)
+
 ### Attrs
 |attr|format|default|
 |---|---|---|
@@ -28,8 +32,6 @@ Step 2. Add the dependency
 ```
   compile 'com.github.rtugeek:MaterialBanner:1.0.0'
 ```
-
-Start
 
 XML
 ```xml
