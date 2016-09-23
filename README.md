@@ -52,6 +52,10 @@ XML
         },bannerData);
   //set circle indicator
   materialBanner.setIndicator(new CirclePageIndicator(this));
+  //indicators:
+  //CirclePageIndicator,IconPageIndicator,LinePageIndicator
+  //Custom indicator view needs to implement com.freegeek.android.materialbanner.view.indicator.PageIndicator
+  
 ```
 [More usage](https://github.com/rtugeek/MaterialBanner/blob/master/app/src/main/java/com/freegeek/android/materialbanner/demo/MainActivity.java)
 
@@ -93,7 +97,7 @@ Listener
 <a href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/rtugeek/MaterialBanner/" target="_blank" title="share to facebook" style="width:100%"><img src="https://github.com/PhilJay/MPAndroidChart/blob/master/design/facebook_icon.png" title="Share on Facebook" width="35" height=35 />
 
 ## Thanks to:
-[Android-ConvenientBanner](https://github.com/saiwu-bigkoo/Android-ConvenientBanner)
+[Android-ConvenientBanner](https://github.com/saiwu-bigkoo/Android-ConvenientBanner)	
 [ViewPagerIndicator](https://github.com/JakeWharton/ViewPagerIndicator)
 
 ## License
