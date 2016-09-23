@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.freegeek.android.materialbanner.demo.MainActivity">
+
+    <TextView
+        android:id="@+id/hometown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My hometown "/>
+
+    <com.freegeek.android.materialbanner.MaterialBanner
+        android:id="@+id/material_banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Indicator"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:text="INSIDE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="changeInside"
+            android:id="@+id/button1" />
+
+        <Button
+            android:text="TYPE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="changeType"
+            android:id="@+id/button2" />
+
+        <Button
+            android:text="GRAVITY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="changeGravity"
+             />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Banner"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:text="Turning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="turning" />
+
+        <Button
+            android:text="MATCH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="changeMatch" />
+
+        <Button
+            android:text="TRANSFORMER"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="changeTransformer" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+

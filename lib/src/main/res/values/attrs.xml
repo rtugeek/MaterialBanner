@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~                DO WHAT YOU WANT TO PUBLIC LICENSE
+  ~                     Version 3, January 2016
+  ~
+  ~  Copyright (C) 2016 Leon Fu <rtugeek@gmail.com>
+  ~
+  ~  Everyone is permitted to copy and distribute verbatim or modified
+  ~  copies of this license document, and changing it is allowed as long
+  ~  as the name is changed.
+  ~
+  ~                 DO WHAT YOU WANT TO PUBLIC LICENSE
+  ~    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+  ~
+  ~      0. You just DO WHAT YOU WANT TO.
+  ~
+  -->
+
+<resources>
+
+    <declare-styleable name="MaterialBanner">
+        <attr name="indicatorMargin" format="dimension"/>
+        <attr name="indicatorInside" format="boolean"/>
+        <attr name="match" format="boolean"/>
+        <attr name="indicatorGravity">
+            <flag name="left" value="0"/>
+            <flag name="center" value="1"/>
+            <flag name="right" value="2"/>
+        </attr>
+    </declare-styleable>
+
+</resources>
