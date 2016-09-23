@@ -17,7 +17,7 @@
 
 
 ### Gradle:
-[![Release](https://jitpack.io/v/rtugeek/materialbanner.svg)](https://jitpack.io/#rtugeek/materialbanner) [![API](https://img.shields.io/badge/API-8%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=8) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialBanner-green.svg?style=true)](https://android-arsenal.com/details/1/3118)
+[![](https://jitpack.io/v/rtugeek/materialbanner.svg)](https://jitpack.io/#rtugeek/materialbanner) [![API](https://img.shields.io/badge/API-8%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialBanner-green.svg?style=true)](https://android-arsenal.com/details/1/3118)
 
 Step 1. Add the JitPack repository in your root build.gradle at the end of repositories:
 ```
@@ -92,6 +92,9 @@ Listener
 <a href="https://plus.google.com/share?url=https://github.com/rtugeek/MaterialBanner/" target="_blank" title="share to Google+" style="width:100%"><img src="https://github.com/PhilJay/MPAndroidChart/blob/master/design/googleplus_icon.png" title="Share on Google+" width="35" height=35 />
 <a href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/rtugeek/MaterialBanner/" target="_blank" title="share to facebook" style="width:100%"><img src="https://github.com/PhilJay/MPAndroidChart/blob/master/design/facebook_icon.png" title="Share on Facebook" width="35" height=35 />
 
+## Thanks to:
+[Android-ConvenientBanner](https://github.com/saiwu-bigkoo/Android-ConvenientBanner)
+[ViewPagerIndicator](https://github.com/JakeWharton/ViewPagerIndicator)
 
 ## License
 
