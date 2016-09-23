@@ -4,7 +4,7 @@
 ![](https://github.com/rtugeek/MaterialBanner/blob/master/screenshot/GIF.gif)
 
 
-## Idea from google trips:
+## Idea from Google Trips:
 ![](https://github.com/rtugeek/MaterialBanner/blob/master/screenshot/googletrips.jpg)
 
 
