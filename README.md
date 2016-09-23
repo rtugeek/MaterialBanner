@@ -7,6 +7,9 @@
 ## Idea from google trips:
 ![](https://github.com/rtugeek/MaterialBanner/blob/master/screenshot/googletrips.jpg)
 
+
+##[Demo APK](https://github.com/rtugeek/MaterialBanner/releases/download/1.0.0/Demo.apk)
+
 ### Attrs
 |attr|format|default|
 |---|---|---|
