@@ -41,7 +41,7 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
- * Created by leon on 2016/9/20.
+ * Created by Jack on 2016/9/20.
  * Email:rtugeek@gmail.com
  */
 public class MaterialBanner<T> extends FrameLayout{
@@ -223,14 +223,14 @@ public class MaterialBanner<T> extends FrameLayout{
 
         @Override
         public void run() {
-            MaterialBanner MaterialBanner = reference.get();
+            MaterialBanner materialBanner = reference.get();
 
-            if(MaterialBanner != null){
-                if (MaterialBanner.mViewPager != null && MaterialBanner.turning) {
-                    int page = MaterialBanner.mViewPager.getCurrentItem() + 1;
-                    if(page >= MaterialBanner.mViewPager.getLastItem())  page = 0;
-                    MaterialBanner.mViewPager.setCurrentItem(page % MaterialBanner.mViewPager.getLastItem());
-                    MaterialBanner.postDelayed(MaterialBanner.adSwitchTask, MaterialBanner.autoTurningTime);
+            if(materialBanner != null){
+                if (materialBanner.mViewPager != null && materialBanner.turning) {
+                    int page = materialBanner.mViewPager.getCurrentItem() + 1;
+                    if(page >= materialBanner.mData.size())  page = 0;
+                    materialBanner.mViewPager.setCurrentItem(page % materialBanner.mData.size());
+                    materialBanner.postDelayed(materialBanner.adSwitchTask, materialBanner.autoTurningTime);
                 }
             }
         }
