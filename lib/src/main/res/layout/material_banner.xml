@@ -1,21 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~                DO WHAT YOU WANT TO PUBLIC LICENSE
-  ~                     Version 3, January 2016
-  ~
-  ~  Copyright (C) 2016 Leon Fu <rtugeek@gmail.com>
-  ~
-  ~  Everyone is permitted to copy and distribute verbatim or modified
-  ~  copies of this license document, and changing it is allowed as long
-  ~  as the name is changed.
-  ~
-  ~                 DO WHAT YOU WANT TO PUBLIC LICENSE
-  ~    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
-  ~
-  ~      0. You just DO WHAT YOU WANT TO.
-  ~
-  -->
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.freegeek.android.materialbanner.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +15,17 @@ import com.freegeek.android.materialbanner.view.indicator.IconPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * Created by leon on 2016/9/20.
- * Email:rtugeek@gmail.com
+ * @author Jack Fu <rtugeek@gmail.com>
+ * @date 2016/9/20
  */
-public class MaterialPageAdapter<T> extends PagerAdapter implements IconPagerAdapter{
-    protected List<T> mData;
+public class MaterialPageAdapter extends PagerAdapter implements IconPagerAdapter {
+
+    protected List mData;
     protected List<Integer> mIcons = new ArrayList<>();
-    protected List<Integer> mIndicatorIcons;
     protected ViewHolderCreator holderCreator;
-    private MaterialViewPager viewPager;
+    protected MaterialViewPager viewPager;
 
 
     @Override
@@ -31,7 +33,7 @@ public class MaterialPageAdapter<T> extends PagerAdapter implements IconPagerAda
         return mIcons.get(index % mIcons.size());
     }
 
-    public void setIcons(List<Integer> icons){
+    public void setIcons(List<Integer> icons) {
         this.mIcons = icons;
     }
 
@@ -40,15 +42,16 @@ public class MaterialPageAdapter<T> extends PagerAdapter implements IconPagerAda
         return mData.size();
     }
 
+    @NonNull
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view = getView(position, null, container);
         container.addView(view);
         return view;
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         View view = (View) object;
         container.removeView(view);
     }
@@ -63,11 +66,13 @@ public class MaterialPageAdapter<T> extends PagerAdapter implements IconPagerAda
         }
         try {
             viewPager.setCurrentItem(position, false);
-        }catch (IllegalStateException e){}
+        } catch (IllegalStateException e) {
+//            e.printStackTrace();
+        }
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
     }
 
@@ -76,22 +81,23 @@ public class MaterialPageAdapter<T> extends PagerAdapter implements IconPagerAda
         this.viewPager = viewPager;
     }
 
-    public MaterialPageAdapter(ViewHolderCreator holderCreator, List<T> datas) {
+    public MaterialPageAdapter(ViewHolderCreator holderCreator, List data) {
         this.holderCreator = holderCreator;
-        this.mData = datas;
+        this.mData = data;
     }
 
     public View getView(int position, View view, ViewGroup container) {
-        Holder holder = null;
+        Holder holder;
         if (view == null) {
             holder = (Holder) holderCreator.createHolder();
             view = holder.createView(container.getContext());
             view.setTag(R.id.cb_item_tag, holder);
         } else {
-            holder = (Holder<T>) view.getTag(R.id.cb_item_tag);
+            holder = (Holder) view.getTag(R.id.cb_item_tag);
         }
-        if (mData != null && !mData.isEmpty())
-            holder.UpdateUI(container.getContext(), position, mData.get(position));
+        if (mData != null && !mData.isEmpty()) {
+            holder.updateUI(container.getContext(), position, mData.get(position));
+        }
         return view;
     }
 

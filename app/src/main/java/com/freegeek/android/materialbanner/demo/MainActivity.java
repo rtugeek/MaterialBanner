@@ -1,35 +1,34 @@
 package com.freegeek.android.materialbanner.demo;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.freegeek.android.materialbanner.IndicatorGravity;
 import com.freegeek.android.materialbanner.MaterialBanner;
-import com.freegeek.android.materialbanner.holder.ViewHolderCreator;
-import com.freegeek.android.materialbanner.holder.Holder;
+import com.freegeek.android.materialbanner.simple.SimpleBannerData;
+import com.freegeek.android.materialbanner.simple.SimpleViewHolderCreator;
 import com.freegeek.android.materialbanner.view.indicator.CirclePageIndicator;
 import com.freegeek.android.materialbanner.view.indicator.IconPageIndicator;
 import com.freegeek.android.materialbanner.view.indicator.LinePageIndicator;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Jack Fu <rtugeek@gmail.com>
+ * @date 2018/06/08
+ */
 public class MainActivity extends AppCompatActivity {
-    private String[] images = {"http://static.panoramio.com/photos/large/132796978.jpg",
-            "http://static.panoramio.com/photos/large/132796977.jpg",
-            "http://static.panoramio.com/photos/large/133036192.jpg",
-            "http://static.panoramio.com/photos/large/132796982.jpg",
-            "http://static.panoramio.com/photos/large/132796981.jpg"
-    };
+    private static int[] images = {R.drawable.home_1,
+            R.drawable.home_2,
+            R.drawable.home_3,
+            R.drawable.home_4,
+            R.drawable.home_5};
 
     private int[] iconIds = new int[]{android.R.drawable.ic_menu_camera,
             android.R.drawable.ic_menu_gallery,
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             android.R.drawable.ic_menu_close_clear_cancel,
             android.R.drawable.ic_dialog_map};
 
-    private MaterialBanner materialBanner;
+    private MaterialBanner<SimpleBannerData> materialBanner;
     private TextView textView;
 
     private CirclePageIndicator circlePageIndicator;
@@ -45,26 +44,21 @@ public class MainActivity extends AppCompatActivity {
     private IconPageIndicator iconPageIndicator;
 
 
-    List<BannerData> list = new ArrayList<>();
+    List<SimpleBannerData> list = new ArrayList<>();
     List<Integer> icons = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        materialBanner = (MaterialBanner) findViewById(R.id.material_banner);
-        textView = (TextView)findViewById(R.id.hometown);
+        materialBanner = findViewById(R.id.material_banner);
+        textView = findViewById(R.id.hometown);
 
         initIndicator();
         initData();
 
-        materialBanner.setPages(
-                new ViewHolderCreator<ImageHolderView>() {
-                    @Override
-                    public ImageHolderView createHolder() {
-                        return new ImageHolderView();
-                    }
-                }, list)
-        .setIndicator(circlePageIndicator);
+        materialBanner.setPages(new SimpleViewHolderCreator(), list)
+                .setIndicator(circlePageIndicator);
 
         materialBanner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -72,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onPageSelected(int position) {
                 textView.setText("My hometown: page " + ++position);
@@ -95,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initIndicator(){
+    private void initIndicator() {
         circlePageIndicator = new CirclePageIndicator(this);
         circlePageIndicator.setStrokeColor(Color.WHITE);
         circlePageIndicator.setFillColor(Color.WHITE);
-        circlePageIndicator.setRadius(MaterialBanner.dip2Pix(this,3));
+        circlePageIndicator.setRadius(MaterialBanner.dip2Pix(this, 3));
         circlePageIndicator.setBetween(20);
 
         linePageIndicator = new LinePageIndicator(this);
@@ -109,23 +104,24 @@ public class MainActivity extends AppCompatActivity {
         iconPageIndicator = new IconPageIndicator(this);
     }
 
-    private void initData(){
+    private void initData() {
         for (int i = 0; i < images.length; i++) {
-            BannerData bannerData = new BannerData();
-            bannerData.setTitle("Country road " + (i + 1));
-            bannerData.setUrl(images[i]);
-            list.add(bannerData);
+            SimpleBannerData simpleBannerData = new SimpleBannerData();
+            simpleBannerData.setTitle("Country road " + (i + 1));
+            simpleBannerData.setResId(images[i]);
+            list.add(simpleBannerData);
             icons.add(iconIds[i]);
         }
     }
 
-    public void changeInside(View view){
+    public void changeInside(View view) {
         materialBanner.setIndicatorInside(!materialBanner.isIndicatorInside());
     }
 
     int index = 0;
-    public void changeType(View view){
-        switch (index % 3){
+
+    public void changeType(View view) {
+        switch (index % 3) {
             case 2:
                 Toast.makeText(this, "set CirclePageIndicator", Toast.LENGTH_SHORT).show();
                 materialBanner.setIndicator(circlePageIndicator);
@@ -134,36 +130,38 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "set LinePageIndicator", Toast.LENGTH_SHORT).show();
                 materialBanner.setIndicator(linePageIndicator);
                 break;
-            case 0:
+            default:
                 Toast.makeText(this, "set IconPageIndicator", Toast.LENGTH_SHORT).show();
                 materialBanner.setIndicator(iconPageIndicator);
                 break;
+
         }
         index++;
     }
 
     int gravity = 0;
-    public void changeGravity(View view){
+
+    public void changeGravity(View view) {
         IndicatorGravity indicatorGravity = IndicatorGravity.valueOf(gravity);
         Toast.makeText(this, "gravity:" + indicatorGravity, Toast.LENGTH_SHORT).show();
         materialBanner.setIndicatorGravity(indicatorGravity);
         gravity++;
     }
 
-    public void changeMatch(View view){
+    public void changeMatch(View view) {
         materialBanner.setMatch(!materialBanner.isMatch());
     }
 
-    public void changeTransformer(View view){
+    public void changeTransformer(View view) {
         materialBanner.setTransformer(new DepthPageTransformer());
     }
 
 
-    public void turning(View view){
-        if(materialBanner.isTurning()){
+    public void turning(View view) {
+        if (materialBanner.isTurning()) {
             materialBanner.stopTurning();
             Toast.makeText(this, "stop turning", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             materialBanner.startTurning(3000);
             Toast.makeText(this, "start turning", Toast.LENGTH_SHORT).show();
         }

@@ -9,13 +9,17 @@ import android.view.MotionEvent;
 import com.freegeek.android.materialbanner.MaterialBanner;
 import com.freegeek.android.materialbanner.adapter.MaterialPageAdapter;
 
-
+/**
+ * @author Jack Fu <rtugeek@gmail.com>
+ * @date 2018/06/08
+ */
 public class MaterialViewPager extends ViewPager {
     OnPageChangeListener mOuterPageChangeListener;
     private MaterialBanner.OnItemClickListener onItemClickListener;
     private MaterialPageAdapter mAdapter;
     private boolean isCanScroll = true;
 
+    @Override
     public void setAdapter(PagerAdapter adapter) {
         mAdapter = (MaterialPageAdapter) adapter;
         mAdapter.setViewPager(this);
@@ -57,21 +61,25 @@ public class MaterialViewPager extends ViewPager {
                         oldX = 0;
                         newX = 0;
                         break;
+                    default:
                 }
             }
             return super.onTouchEvent(ev);
-        } else
+        } else {
             return false;
+        }
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (isCanScroll)
+        if (isCanScroll) {
             return super.onInterceptTouchEvent(ev);
-        else
+        } else {
             return false;
+        }
     }
 
+    @Override
     public MaterialPageAdapter getAdapter() {
         return mAdapter;
     }
@@ -141,7 +149,7 @@ public class MaterialViewPager extends ViewPager {
     };
 
 
-    public void setOnItemClickListener(MaterialBanner.OnItemClickListener clickListener){
+    public void setOnItemClickListener(MaterialBanner.OnItemClickListener clickListener) {
         onItemClickListener = clickListener;
     }
 }

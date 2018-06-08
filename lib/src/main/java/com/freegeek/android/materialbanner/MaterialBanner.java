@@ -41,15 +41,14 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
- * Created by Jack on 2016/9/20.
- * Email:rtugeek@gmail.com
+ * @author Jack Fu <rtugeek@gmail.com>
+ * @date 2016/9/20
  */
 public class MaterialBanner<T> extends FrameLayout{
     private MaterialViewPager mViewPager;
     private PageIndicator mPageIndicator;
-    private List<T> mData;
+    private List mData;
     private MaterialPageAdapter mPageAdapter;
-    private ViewPagerScroller scroller;
     private long autoTurningTime;
     private boolean turning;
     private boolean canTurn = false;
@@ -90,18 +89,18 @@ public class MaterialBanner<T> extends FrameLayout{
     private void init(Context context,AttributeSet attrs){
         TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.MaterialBanner);
         mIndicatorMargin = (int) a.getDimension(R.styleable.MaterialBanner_indicatorMargin,dip2Pix(context,10));
-        mIndicatorGravity = IndicatorGravity.valueOf((int) a.getInt(R.styleable.MaterialBanner_indicatorGravity,0));
+        mIndicatorGravity = IndicatorGravity.valueOf(a.getInt(R.styleable.MaterialBanner_indicatorGravity,0));
         mIndicatorInside = a.getBoolean(R.styleable.MaterialBanner_indicatorInside,true);
         mMatch = a.getBoolean(R.styleable.MaterialBanner_match,false);
         a.recycle();
 
         View view = LayoutInflater.from(context).inflate(R.layout.material_banner,this,true);
 
-        mCardView = (CardView)view.findViewById(R.id.card_view);
-        mViewPager = (MaterialViewPager) view.findViewById(R.id.view_pager);
-        mCardContainer = (FrameLayout) view.findViewById(R.id.container);
-        mCardContainer = (FrameLayout) view.findViewById(R.id.card_container);
-        mIndicatorContainer = (FrameLayout) view.findViewById(R.id.indicator_container);
+        mCardView = view.findViewById(R.id.card_view);
+        mViewPager = view.findViewById(R.id.view_pager);
+        mCardContainer = view.findViewById(R.id.container);
+        mCardContainer = view.findViewById(R.id.card_container);
+        mIndicatorContainer = view.findViewById(R.id.indicator_container);
 
         mIndicatorParams = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         mIndicatorParams.gravity = Gravity.CENTER;
@@ -124,7 +123,9 @@ public class MaterialBanner<T> extends FrameLayout{
 
     private void updateIndicatorMargin(){
         mIndicatorParams.setMargins(mIndicatorMargin,mIndicatorMargin,mIndicatorMargin,mIndicatorMargin);
-        if(mPageIndicator != null)mPageIndicator.getView().setLayoutParams(mIndicatorParams);
+        if(mPageIndicator != null){
+            mPageIndicator.getView().setLayoutParams(mIndicatorParams);
+        }
     }
 
     public MaterialBanner setIndicatorGravity(IndicatorGravity indicatorGravity) {
@@ -135,10 +136,14 @@ public class MaterialBanner<T> extends FrameLayout{
     }
 
     public MaterialBanner setIndicator(PageIndicator pageIndicator){
-        if(mPageIndicator == pageIndicator) return this;
+        if(mPageIndicator == pageIndicator) {
+            return this;
+        }
 
         //remove old indicator view first;
-        if(mPageIndicator != null) mIndicatorContainer.removeView(mPageIndicator.getView());
+        if(mPageIndicator != null) {
+            mIndicatorContainer.removeView(mPageIndicator.getView());
+        }
         mPageIndicator = pageIndicator;
         mPageIndicator.setViewPager(mViewPager);
         mPageIndicator.setCurrentItem(getCurrentItem());
@@ -177,7 +182,9 @@ public class MaterialBanner<T> extends FrameLayout{
      * update the margin value of indicator and cardContainer
      */
     private void updateMargin(){
-        if(mPageIndicator == null) return;
+        if(mPageIndicator == null) {
+            return;
+        }
         updateIndicatorMargin();
         if(!mIndicatorInside){
             //set margin according to the mIndicatorContainer height
@@ -202,7 +209,9 @@ public class MaterialBanner<T> extends FrameLayout{
     public void setAdapter(MaterialPageAdapter adapter){
         mPageAdapter = adapter;
         mViewPager.setAdapter(adapter);
-        if(mPageIndicator != null) mPageIndicator.setViewPager(mViewPager);
+        if(mPageIndicator != null) {
+            mPageIndicator.setViewPager(mViewPager);
+        }
     }
 
 
@@ -217,8 +226,8 @@ public class MaterialBanner<T> extends FrameLayout{
 
         private final WeakReference<MaterialBanner> reference;
 
-        AdSwitchTask(MaterialBanner MaterialBanner) {
-            this.reference = new WeakReference<MaterialBanner>(MaterialBanner);
+        AdSwitchTask(MaterialBanner materialbanner) {
+            this.reference = new WeakReference(materialbanner);
         }
 
         @Override
@@ -228,7 +237,9 @@ public class MaterialBanner<T> extends FrameLayout{
             if(materialBanner != null){
                 if (materialBanner.mViewPager != null && materialBanner.turning) {
                     int page = materialBanner.mViewPager.getCurrentItem() + 1;
-                    if(page >= materialBanner.mData.size())  page = 0;
+                    if(page >= materialBanner.mData.size()) {
+                        page = 0;
+                    }
                     materialBanner.mViewPager.setCurrentItem(page % materialBanner.mData.size());
                     materialBanner.postDelayed(materialBanner.adSwitchTask, materialBanner.autoTurningTime);
                 }
@@ -241,7 +252,9 @@ public class MaterialBanner<T> extends FrameLayout{
         mPageAdapter = new MaterialPageAdapter(holderCreator, mData);
         mViewPager.setAdapter(mPageAdapter);
 
-        if(mPageIndicator != null)mPageIndicator.setViewPager(mViewPager);
+        if(mPageIndicator != null) {
+            mPageIndicator.setViewPager(mViewPager);
+        }
         return this;
     }
 
@@ -297,9 +310,13 @@ public class MaterialBanner<T> extends FrameLayout{
 
         int action = ev.getAction();
         if (action == MotionEvent.ACTION_UP||action == MotionEvent.ACTION_CANCEL||action == MotionEvent.ACTION_OUTSIDE) {
-            if (canTurn)startTurning(autoTurningTime);
+            if (canTurn) {
+                startTurning(autoTurningTime);
+            }
         } else if (action == MotionEvent.ACTION_DOWN) {
-            if (canTurn)stopTurning();
+            if (canTurn) {
+                stopTurning();
+            }
         }
         return super.dispatchTouchEvent(ev);
     }
@@ -333,6 +350,7 @@ public class MaterialBanner<T> extends FrameLayout{
     }
 
     public interface OnItemClickListener{
+
         void onItemClick(int position);
     }
 

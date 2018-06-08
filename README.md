@@ -33,7 +33,7 @@ Step 1. Add the JitPack repository in your root build.gradle at the end of repos
 ```
 Step 2. Add the dependency
 ```
-  compile 'com.github.rtugeek:materialbanner:1.0.1'
+  compile 'com.github.rtugeek:materialbanner:1.0.2'
 ```
 
 XML
@@ -47,12 +47,8 @@ XML
 
 ```java
   MaterialBanner materialBanner = (MaterialBanner) findViewById(R.id.material_banner);
-  materialBanner.setPages(new ViewHolderCreator() {
-            @Override
-            public Object createHolder() {
-                return new ImageHolderView();
-            }
-        },bannerData);
+  materialBanner.setPages(new SimpleViewHolderCreator(), data)
+            .setIndicator(circlePageIndicator);
   //set circle indicator
   materialBanner.setIndicator(new CirclePageIndicator(this));
   //indicators:
@@ -60,6 +56,7 @@ XML
   //Custom indicator view needs to implement com.freegeek.android.materialbanner.view.indicator.PageIndicator
   
 ```
+
 [More usage](https://github.com/rtugeek/MaterialBanner/blob/master/app/src/main/java/com/freegeek/android/materialbanner/demo/MainActivity.java)
 
 Listener
@@ -92,6 +89,43 @@ Listener
         
 ```
 
+### Customize
+1.Create Holder,[See also SimpleHolder](https://github.com/rtugeek/MaterialBanner/blob/master/lib/src/main/java/com/freegeek/android/materialbanner/simple/SimpleHolder.java)[SimpleBannerData](https://github.com/rtugeek/MaterialBanner/blob/master/lib/src/main/java/com/freegeek/android/materialbanner/simple/SimpleBannerData.java)
+```java
+public class YourHolder implements Holder<YourData> {
+
+    @Override
+    public View createView(Context context) {
+        View view = LayoutInflater.from(context).inflate(R.layout.simple_banner_item,null);
+        //init your view here
+        return view;
+    }
+
+    @Override
+    public void updateUI(Context context, int position, YourData data) {
+        //update your view here
+    }
+
+}
+
+```
+2.Create HolderCreator
+```java
+public class YourHolderCreator implements ViewHolderCreator{
+
+    @Override
+    public YourHolder createHolder() {
+        return new YourHolder();
+    }
+
+}
+```
+3.Set your creator
+```java
+materialBanner.setPages(new YourHolderCreator(), list);
+```
+
+
 
 **Spread the word**
 
@@ -108,7 +142,7 @@ Listener
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
                     Version 2, December 2004
    
-    Copyright (C) 2004 Leon Fu <rtugeek@gmail.com>
+    Copyright (C) 2004 Jack Fu <rtugeek@gmail.com>
    
     Everyone is permitted to copy and distribute verbatim or modified
     copies of this license document, and changing it is allowed as long
